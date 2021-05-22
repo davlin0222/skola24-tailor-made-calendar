@@ -18,7 +18,6 @@ form.addEventListener('submit', function (e) {
   fetch('/', {
     method: 'POST',
     body: JSON.stringify(data),
-    // body: JSON.stringify(new FormData(e.target)),
     headers: {
       'Content-Type': 'application/json',
     },

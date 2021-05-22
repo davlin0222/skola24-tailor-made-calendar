@@ -21,6 +21,8 @@ app.post('/', (req, res) => {
   // console.log('🚀 ~ file: server.js ~ line 14 ~ app.post ~ req', req);
   console.log('🚀 ~ file: server.js ~ line 13 ~ app.post ~ req.body', req.body);
   res.send(req.body);
+
+  require('./src/webscrape')(req.body);
 });
 
 const PORT = 3000;
