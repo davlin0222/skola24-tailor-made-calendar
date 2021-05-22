@@ -14,18 +14,21 @@ app.use(express.json());
 // Routes
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'main.html'));
+    res.sendFile(path.join(__dirname, 'public', 'main.html'));
 });
 
 app.post('/', (req, res) => {
-  // console.log('🚀 ~ file: server.js ~ line 14 ~ app.post ~ req', req);
-  console.log('🚀 ~ file: server.js ~ line 13 ~ app.post ~ req.body', req.body);
-  res.send(req.body);
+    // console.log('🚀 ~ file: server.js ~ line 14 ~ app.post ~ req', req);
+    console.log(
+        '🚀 ~ file: server.js ~ line 13 ~ app.post ~ req.body',
+        req.body
+    );
+    res.send(req.body);
 
-  require('./src/webscrape')(req.body);
+    require('./src/webscrape')({ ...req.body });
 });
 
 const PORT = 3000;
 app.listen(PORT, function () {
-  console.log(`Server up and running on port ${PORT}`);
+    console.log(`Server up and running on port ${PORT}`);
 });
