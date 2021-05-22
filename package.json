@@ -9,7 +9,11 @@
   "author": "DavidLindström",
   "license": "Unlicense",
   "dependencies": {
-    "express": "^4.17.1"
+    "date-fns": "^2.21.3",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pino-http": "^5.5.0",
+    "pino-pretty": "^4.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
