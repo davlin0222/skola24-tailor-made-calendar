@@ -1,4 +1,12 @@
-const puppeteer = require('puppeteer');
+const path = require('path');
+
+// puppeteer-extra is a wrapper around puppeteer,
+// it augments the installed puppeteer with plugin functionality
+const puppeteer = require('puppeteer-extra');
+
+// add stealth plugin and use defaults (all evasion techniques)
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 module.exports = async function (options) {
     const config = {
@@ -16,7 +24,8 @@ module.exports = async function (options) {
     }
 
     const browser = await puppeteer.launch({ headless: false, slowMo: 0 });
-    const page = await browser.newPage();
+    const page = (await browser.pages())[0];
+    // const page = await browser.newPage();
 
     // Do the webscraping
     try {
@@ -30,10 +39,31 @@ module.exports = async function (options) {
 };
 
 async function webscrape(page, config) {
+    const capture = require('./dist/puppeteer-capturer')(
+        page,
+        path.join(__dirname, '..', '.puppeteer_captures')
+    );
+
+    // Take a screenshots
+    await capture('before-load');
+    await capture('after-load');
+    await capture('after-load');
+    await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+    // await capture('after-load');
+
     await page.goto(
         'https://web.skola24.se/timetable/timetable-viewer/halmstad.skola24.se/Kattegattgymnasiet/'
     );
-
     // Turn off css animations
     await page.evaluate(() => {
         const style__elem = document.createElement('style');
@@ -46,6 +76,10 @@ async function webscrape(page, config) {
 }`;
         document.head.appendChild(style__elem);
     });
+
+    await page.waitForTimeout(900);
+
+    // await track('initial-load');
 
     /* ----------------------------- Set Schedule ID ---------------------------- */
 

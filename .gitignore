@@ -1,2 +1,4 @@
 .history
+.local-test
+.puppeteer_captures
 node_modules
