@@ -58,6 +58,14 @@ function getDateOfSwedishWeek(w, y) {
     return date_fns.add(getDateOfISOWeek(w, y), { days: 1 });
 }
 
+function set_date_time(date, time_string) {
+    time_array = time_string.split(':');
+    const hours = time_array[0];
+    const minutes = time_array[1];
+
+    return date_fns.setMinutes(date_fns.setHours(date, hours), minutes);
+}
+
 function extract_date(week_number, date_time__obscure_string) {
     const swedish_week_day_names = [
         'måndag',
@@ -70,6 +78,7 @@ function extract_date(week_number, date_time__obscure_string) {
     ];
 
     const time_values = date_time__obscure_string.split(' ');
+    console.log('🚀: functionextract_date -> time_values', time_values);
     const week_day__index = swedish_week_day_names.indexOf(
         time_values[0].toLowerCase()
     );
@@ -79,7 +88,12 @@ function extract_date(week_number, date_time__obscure_string) {
         days: week_day__index,
     });
 
-    return date;
+    const start__time_string = time_values[1];
+    const start__date_time = set_date_time(date, start__time_string);
+    const end__time_string = time_values[3];
+    const end__date_time = set_date_time(date, end__time_string);
+
+    return { start__date_time, end__date_time };
 }
 
 function format_calendar_data(calendar__raw_data) {
