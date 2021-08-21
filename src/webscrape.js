@@ -40,6 +40,7 @@ module.exports = async function (options) {
 };
 
 async function webscrape(page, config) {
+    console.log('🚀: webscrape -> config', config);
     const capture = require('./libs/puppeteer-capturer')(
         page,
         path.join(__dirname, '..', '.puppeteer_captures')
@@ -136,7 +137,11 @@ async function webscrape(page, config) {
             continue;
         }
 
+        await page.waitForTimeout(500); // Magic value
+
         await calendar_block__elem.click();
+
+        await page.waitForTimeout(500); // Magic value
 
         const header__elem__XPath =
             '/html/body/div[3]/div[2]/div/div[4]/div/div/div[1]/div/div/div[1]/h2';
@@ -148,7 +153,10 @@ async function webscrape(page, config) {
             'textContent'
         );
         const header__elem__text = await header__elem__json.jsonValue();
-        let calendar_block__data = [header__elem__text];
+        let calendar_block__data = [
+            config.week_number__value,
+            header__elem__text,
+        ];
 
         const detail__elems = await page.$x(
             '/html/body/div[3]/div[2]/div/div[4]/div/div/div[1]/div/div/div[2]/ul/li/div/div'
@@ -174,5 +182,5 @@ async function webscrape(page, config) {
         await page.waitForTimeout(500); // Magic value
     }
 
-    console.log(calendar__raw_data);
+    return calendar__raw_data;
 }
