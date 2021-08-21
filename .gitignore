@@ -1,4 +1,5 @@
 .history
-.local-test
+.lh
+.local
 .puppeteer_captures
 node_modules

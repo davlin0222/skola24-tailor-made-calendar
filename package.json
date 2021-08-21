@@ -1,24 +1,24 @@
 {
-  "name": "calendar-schemavisare",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "start": "npx nodemon server.js"
-  },
-  "author": "DavidLindström",
-  "license": "Unlicense",
-  "dependencies": {
-    "date-fns": "^2.21.3",
-    "express": "^4.17.1",
-    "morgan": "^1.10.0",
-    "pino-http": "^5.5.0",
-    "pino-pretty": "^4.8.0",
-    "puppeteer": "^9.1.1",
-    "puppeteer-extra": "^3.1.18",
-    "puppeteer-extra-plugin-stealth": "^2.7.8"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+    "name": "calendar-schemavisare",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/server.js",
+    "scripts": {
+        "start": "npx nodemon ."
+    },
+    "author": "DavidLindström",
+    "license": "Unlicense",
+    "dependencies": {
+        "date-fns": "^2.21.3",
+        "express": "^4.17.1",
+        "morgan": "^1.10.0",
+        "pino-http": "^5.5.0",
+        "pino-pretty": "^4.8.0",
+        "puppeteer": "^9.1.1",
+        "puppeteer-extra": "^3.1.18",
+        "puppeteer-extra-plugin-stealth": "^2.7.8"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
 }

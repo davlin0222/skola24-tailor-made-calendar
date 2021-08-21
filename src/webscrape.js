@@ -6,6 +6,7 @@ const puppeteer = require('puppeteer-extra');
 
 // add stealth plugin and use defaults (all evasion techniques)
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+
 puppeteer.use(StealthPlugin());
 
 module.exports = async function (options) {
@@ -29,7 +30,7 @@ module.exports = async function (options) {
 
     // Do the webscraping
     try {
-        await webscrape(page, config);
+        return await webscrape(page, config);
     } catch (error) {
         console.log('🚀 ~ file: webscrape.js:', error);
     } finally {
@@ -39,31 +40,15 @@ module.exports = async function (options) {
 };
 
 async function webscrape(page, config) {
-    const capture = require('./dist/puppeteer-capturer')(
+    const capture = require('./libs/puppeteer-capturer')(
         page,
         path.join(__dirname, '..', '.puppeteer_captures')
     );
 
-    // Take a screenshots
-    await capture('before-load');
-    await capture('after-load');
-    await capture('after-load');
-    await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-    // await capture('after-load');
-
     await page.goto(
         'https://web.skola24.se/timetable/timetable-viewer/halmstad.skola24.se/Kattegattgymnasiet/'
     );
+
     // Turn off css animations
     await page.evaluate(() => {
         const style__elem = document.createElement('style');
@@ -78,8 +63,6 @@ async function webscrape(page, config) {
     });
 
     await page.waitForTimeout(900);
-
-    // await track('initial-load');
 
     /* ----------------------------- Set Schedule ID ---------------------------- */
 
@@ -142,9 +125,11 @@ async function webscrape(page, config) {
 
     const calendar_block__elems = await page.$$('rect');
 
+    let calendar__raw_data = [];
+
     for (const calendar_block__elem of calendar_block__elems) {
         if (
-            (await calendar_block__elem.evaluate(elem =>
+            (await calendar_block__elem.evaluate((elem) =>
                 elem.getAttribute('box-type')
             )) != 'Lesson'
         ) {
@@ -163,7 +148,7 @@ async function webscrape(page, config) {
             'textContent'
         );
         const header__elem__text = await header__elem__json.jsonValue();
-        console.log('header__elem__text:', header__elem__text);
+        let calendar_block__data = [header__elem__text];
 
         const detail__elems = await page.$x(
             '/html/body/div[3]/div[2]/div/div[4]/div/div/div[1]/div/div/div[2]/ul/li/div/div'
@@ -174,8 +159,10 @@ async function webscrape(page, config) {
                 'textContent'
             );
             const detail__elem__text = await detail__elem__json.jsonValue();
-            console.log('detail__elem__text:', detail__elem__text);
+            calendar_block__data.push(detail__elem__text.trim());
         }
+
+        calendar__raw_data.push(calendar_block__data);
 
         const close__button__XPath =
             '/html/body/div[3]/div[2]/div/div[4]/div/div/div[2]/div/button';
@@ -186,4 +173,6 @@ async function webscrape(page, config) {
 
         await page.waitForTimeout(500); // Magic value
     }
+
+    console.log(calendar__raw_data);
 }
