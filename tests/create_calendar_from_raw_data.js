@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const calendar__raw_data = [
     ['33', 'Onsdag 09:00 - 13:30', 'Skolstart'],
     ['33', 'Torsdag 08:30 - 10:15', 'Datalagring', 'OLR', 'E212'],
@@ -8,13 +10,17 @@ const calendar__raw_data = [
     ['33', 'Fredag 12:50 - 14:30', 'Webbutveckling', 'PEFR', 'E212'],
 ];
 
-const calendar__formatted_data = require('./format_calendar_data')(
+const calendar__formatted_data = require('../src/format_calendar_data')(
     calendar__raw_data
 );
-console.log('🚀: calendar__formatted_data', calendar__formatted_data);
 
-const calendar__constructed = require('./construct_calendar')(
+const calendar_string__constructed = require('../src/construct_calendar_string')(
     calendar__formatted_data
 );
 
-console.log('🚀: calendar__constructed', calendar__constructed);
+fs.writeFileSync(
+    `${__dirname}/../,created-calendars/school.ics`,
+    calendar_string__constructed
+);
+
+// console.log('🚀: calendar_string__constructed', calendar_string__constructed);

@@ -14,7 +14,6 @@ module.exports = async function (options) {
         schedule_id__value: options.schedule_id,
         week_number__value: options.week_number,
     };
-    console.log('🚀 ~ file: webscrape.js ~ line 8 ~ config', config);
 
     if (
         typeof config.schedule_id__value == 'undefined' ||
@@ -32,19 +31,18 @@ module.exports = async function (options) {
     try {
         return await webscrape(page, config);
     } catch (error) {
-        console.log('🚀 ~ file: webscrape.js:', error);
+        console.error(error);
     } finally {
-        console.log('Close the browser');
+        // console.log('Close the browser');
         await browser.close();
     }
 };
 
 async function webscrape(page, config) {
-    console.log('🚀: webscrape -> config', config);
-    const capture = require('./libs/puppeteer-capturer')(
-        page,
-        path.join(__dirname, '..', '.puppeteer_captures')
-    );
+    // const capture = require('../libs/puppeteer-capturer')(
+    //     page,
+    //     path.join(__dirname, '..', '..', ',puppeteer_captures')
+    // );
 
     await page.goto(
         'https://web.skola24.se/timetable/timetable-viewer/halmstad.skola24.se/Kattegattgymnasiet/'

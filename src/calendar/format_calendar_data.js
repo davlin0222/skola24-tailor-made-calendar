@@ -39,7 +39,6 @@ function extract_date(week_number, date_time__obscure_string) {
     ];
 
     const time_values = date_time__obscure_string.split(' ');
-    console.log('🚀: functionextract_date -> time_values', time_values);
     const week_day__index = swedish_week_day_names.indexOf(
         time_values[0].toLowerCase()
     );
@@ -67,14 +66,6 @@ function format_calendar_data(calendar__raw_data) {
                 week_number,
                 date_time__obscure_string
             );
-
-            // const event_info = [
-            //     'start__date',
-            //     'end__date',
-            //     'lesson_title',
-            //     'teacher_id',
-            //     'classroom_id',
-            // ];
 
             return {
                 start__date_time,
