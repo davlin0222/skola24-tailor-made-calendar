@@ -25,6 +25,10 @@ app.post('/create-calendar', async (req, res) => {
     const calendar__formatted_data = require('./format_calendar_data')(
         calendar__raw_data
     );
+
+    const calendar__constructed = require('./construct_calendar')(
+        calendar__formatted_data
+    );
 });
 
 const PORT = 3000;

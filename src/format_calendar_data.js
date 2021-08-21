@@ -1,44 +1,5 @@
 const date_fns = require('date-fns');
 
-const calendar__raw_data = [
-    ['33', 'Onsdag 09:00 - 13:30', 'Skolstart'],
-    ['33', 'Torsdag 08:30 - 10:15', 'Datalagring', 'OLR', 'E212'],
-    ['33', 'Torsdag 10:30 - 12:00', 'Teknisk specialisering', 'PEFR', 'E212'],
-    ['33', 'Torsdag 12:40 - 14:10', 'Gy ingenjören i praktiken', 'OLL', 'E229'],
-    ['33', 'Fredag 08:30 - 10:00', 'Gy ingenjören i praktiken', 'ÅSI', 'E229'],
-    ['33', 'Fredag 10:20 - 12:10', 'Mjukvarudesign', 'OLR', 'E212'],
-    ['33', 'Fredag 12:50 - 14:30', 'Webbutveckling', 'PEFR', 'E212'],
-];
-
-const event = {
-    start: [2018, 5, 30, 6, 30],
-    duration: { hours: 6, minutes: 30 },
-    title: 'Bolder Boulder',
-    description: 'Annual 10-kilometer run in Boulder, Colorado',
-    location: 'Folsom Field, University of Colorado (finish line)',
-    url: 'http://www.bolderboulder.com/',
-    geo: { lat: 40.0095, lon: 105.2669 },
-    categories: ['10k races', 'Memorial Day Weekend', 'Boulder CO'],
-    status: 'CONFIRMED',
-    busyStatus: 'BUSY',
-    organizer: { name: 'Admin', email: 'Race@BolderBOULDER.com' },
-    attendees: [
-        {
-            name: 'Adam Gibbons',
-            email: 'adam@example.com',
-            rsvp: true,
-            partstat: 'ACCEPTED',
-            role: 'REQ-PARTICIPANT',
-        },
-        {
-            name: 'Brittany Seaton',
-            email: 'brittany@example2.org',
-            dir: 'https://linkedin.com/in/brittanyseaton',
-            role: 'OPT-PARTICIPANT',
-        },
-    ],
-};
-
 function getDateOfWeek(w, y) {
     var d = 1 + (w - 1) * 7; // 1st of January + 7 days for each week
 
@@ -127,10 +88,5 @@ function format_calendar_data(calendar__raw_data) {
 
     return calendar__formatted_data;
 }
-
-console.log(
-    '🚀: format_calendar_data(calendar__raw_data);',
-    format_calendar_data(calendar__raw_data)
-);
 
 module.exports = format_calendar_data;
