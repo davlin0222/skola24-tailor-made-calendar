@@ -102,7 +102,10 @@ function format_calendar_data(calendar__raw_data) {
             const week_number = calendar__block__data[0];
             const date_time__obscure_string = calendar__block__data[1];
 
-            const date = extract_date(week_number, date_time__obscure_string);
+            const { start__date_time, end__date_time } = extract_date(
+                week_number,
+                date_time__obscure_string
+            );
 
             // const event_info = [
             //     'start__date',
@@ -112,7 +115,13 @@ function format_calendar_data(calendar__raw_data) {
             //     'classroom_id',
             // ];
 
-            return { date };
+            return {
+                start__date_time,
+                end__date_time,
+                lesson_title: calendar__block__data[2],
+                teacher_id: calendar__block__data[3],
+                classroom_id: calendar__block__data[4],
+            };
         }
     );
 
