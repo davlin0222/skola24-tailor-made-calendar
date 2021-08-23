@@ -20,22 +20,30 @@ app.get('/', (req, res) => {
 });
 
 app.post('/create-calendar', async (req, res) => {
-    const calendar__raw_data = await require('./webscrape/webscrape')({
+    const calendar__raw_data = await require('./services/webscrape')({
         ...req.body,
     });
 
-    const calendar__formatted_data = require('./calendar/format_calendar_data')(
+    const calendar__formatted_data = require('./services/extract_calendar_data')(
         calendar__raw_data
     );
 
-    const calendar_string__constructed = require('./calendar/construct_calendar_string')(
+    const calendar_string__constructed = require('./services/calendar_formatted_string')(
         calendar__formatted_data
     );
 
     fs.writeFileSync(
-        `${__dirname}/../,created-calendars/school.ics`,
+        `${__dirname}/../,local/,created-calendars/school.ics`,
         calendar_string__constructed
     );
+    const file_path = path.join(
+        __dirname,
+        '..',
+        ',local',
+        ',created-calendars',
+        'school.ics'
+    );
+    return res.download(file_path);
 });
 
 const PORT = 3000;

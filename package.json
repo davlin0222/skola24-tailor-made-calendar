@@ -2,9 +2,17 @@
     "name": "calendar-schemavisare",
     "version": "1.0.0",
     "description": "",
+    "keywords": [
+        "webscrape",
+        "schedule",
+        "calendar"
+    ],
     "main": "src/server.js",
     "scripts": {
-        "start": "npx nodemon ."
+        "start": "npx concurrently -n browser,scss,node npm:start-browser npm:watch-scss npm:watch-node",
+        "start-browser": "bash ./start-browser.sh",
+        "watch-scss": "npx sass --watch public/scss:public/css",
+        "watch-node": "npx nodemon . | npx pino-pretty"
     },
     "author": "DavidLindström",
     "license": "Unlicense",
@@ -17,9 +25,11 @@
         "pino-pretty": "^4.8.0",
         "puppeteer": "^9.1.1",
         "puppeteer-extra": "^3.1.18",
-        "puppeteer-extra-plugin-stealth": "^2.7.8"
+        "puppeteer-extra-plugin-stealth": "^2.7.8",
+        "sass": "^1.38.0"
     },
     "devDependencies": {
+        "concurrently": "^6.2.1",
         "nodemon": "^2.0.7"
     }
 }

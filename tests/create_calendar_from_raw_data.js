@@ -10,16 +10,16 @@ const calendar__raw_data = [
     ['33', 'Fredag 12:50 - 14:30', 'Webbutveckling', 'PEFR', 'E212'],
 ];
 
-const calendar__formatted_data = require('../src/format_calendar_data')(
+const calendar__formatted_data = require('../src/services/extract_calendar_data')(
     calendar__raw_data
 );
 
-const calendar_string__constructed = require('../src/construct_calendar_string')(
+const calendar_string__constructed = require('../src/services/calendar_formatted_string')(
     calendar__formatted_data
 );
 
 fs.writeFileSync(
-    `${__dirname}/../,created-calendars/school.ics`,
+    `${__dirname}/../,local/,created-calendars/school.ics`,
     calendar_string__constructed
 );
 
