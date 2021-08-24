@@ -1,11 +1,13 @@
 {
-    "name": "calendar-schemavisare",
+    "name": "skola24-tailor-made-calendar",
     "version": "1.0.0",
-    "description": "",
+    "description": "Webscraper for skola24 schemavisare to export ics files, with your custom-made structure",
     "keywords": [
-        "webscrape",
+        "webscraper",
         "schedule",
-        "calendar"
+        "calendar",
+        "ics",
+        "skola24"
     ],
     "main": "src/server.js",
     "scripts": {
@@ -14,8 +16,8 @@
         "watch-scss": "npx sass --watch public/scss:public/css",
         "watch-node": "npx nodemon . | npx pino-pretty"
     },
-    "author": "DavidLindström",
-    "license": "Unlicense",
+    "author": "David Lindström",
+    "license": "MIT License",
     "dependencies": {
         "date-fns": "^2.21.3",
         "express": "^4.17.1",
