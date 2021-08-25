@@ -121,6 +121,8 @@ Text input Functionality
         If Schedule ID first 5 chars are numbers check if valid Person ID
     Apply case
 
+Cannot submit the button twice, show when that users turn
+
 
 ## Progress
 
