@@ -32,17 +32,16 @@ app.post('/create-calendar', async (req, res) => {
         calendar__formatted_data
     );
 
-    fs.writeFileSync(
-        `${__dirname}/../,local/,created-calendars/school.ics`,
-        calendar_string__constructed
-    );
     const file_path = path.join(
         __dirname,
         '..',
-        ',local',
-        ',created-calendars',
+        'data',
+        'created-calendars',
         'school.ics'
     );
+
+    fs.writeFileSync(file_path, calendar_string__constructed);
+
     return res.download(file_path);
 });
 
