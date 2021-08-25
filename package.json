@@ -16,7 +16,7 @@
         "watch-scss": "npx sass --watch public/scss:public/css",
         "watch-node": "npx nodemon . | npx pino-pretty"
     },
-    "author": "David Lindström",
+    "author": "viunea",
     "license": "MIT License",
     "dependencies": {
         "date-fns": "^2.21.3",
