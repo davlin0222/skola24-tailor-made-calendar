@@ -39,9 +39,9 @@ module.exports = async function (options) {
 };
 
 async function webscrape(page, config) {
-    // const capture = require('../libs/puppeteer-capturer')(
+    // const capture = require('../lib/puppeteer-capturer')(
     //     page,
-    //     path.join(__dirname, '..', '..', ',puppeteer_captures')
+    //     path.join(__dirname, '..', '..', 'data', 'puppeteer_captures')
     // );
 
     await page.goto(
