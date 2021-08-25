@@ -1,6 +1,11 @@
 import { DateTime } from '../vendors/luxon.js';
 import download_blob_as_file from './download_blob_as_file.js';
 
+document.querySelector('.schedule_id__reveal').addEventListener('click', (e) => {
+    console.log('document.querySelector ~ click');
+    document.querySelector('.schedule_id__info').classList.toggle('hidden');
+});
+
 const custom_calendar__form = document.querySelector('.custom_calendar__form');
 
 custom_calendar__form.week_number.value = DateTime.now().weekNumber;

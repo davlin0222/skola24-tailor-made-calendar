@@ -10,3 +10,40 @@ body {
     background: #121212;
     color: #eee;
 }
+
+.custom_calendar__form {
+    & > * + * {
+        margin: 1em 0 0;
+    }
+
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: column;
+
+    input[type='text'],
+    input[type='number'] {
+        margin-top: 0;
+    }
+    input[type='submit'] {
+        margin-top: 1rem;
+    }
+
+    ul {
+        margin-top: 0;
+        margin-left: 1rem;
+    }
+    p {
+        margin-left: 1rem;
+        font-style: italic;
+    }
+}
+
+.schedule_id__reveal {
+    width: 0.9rem;
+    height: 0.9rem;
+    font-size: 0.7rem;
+}
+
+.hidden {
+    display: none;
+}

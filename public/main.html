@@ -14,8 +14,51 @@
         <h1>Custom Skola24 Calendars</h1>
 
         <form class="custom_calendar__form">
-            <input type="text" name="schedule_id" placeholder="Schedule ID" />
-            <input type="number" name="week_number" placeholder="Week number" />
+            <label for="city">Minicipality / City</label>
+            <input
+                type="text"
+                name="city"
+                id="city"
+                placeholder="Halmstad"
+                value="Halmstad"
+                disabled
+            />
+            <label for="school">School name</label>
+            <input
+                type="text"
+                name="school"
+                id="school"
+                placeholder="Kattegattgymnasiet"
+                value="Kattegattgymnasiet"
+                disabled
+            />
+
+            <label for="schedule_id"
+                >Schedule ID
+                <button type="button" class="schedule_id__reveal">?</button></label
+            >
+            <input
+                type="text"
+                name="schedule_id"
+                id="schedule_id"
+                placeholder="YYMMDD-XXXX or other type of ID"
+            />
+            <ul class="schedule_id__info hidden">
+                <li>
+                    Person ID<br />
+                    <p>Swedish social security number (YYMMDD-XXXX)</p>
+                </li>
+
+                <li>Class ID</li>
+                <li>Classroom ID</li>
+                <li>Teacher ID</li>
+                <li>Group ID</li>
+                <li>Lesson ID</li>
+            </ul>
+
+            <label for="week_number">Week number</label>
+            <input type="number" name="week_number" id="week_number" />
+
             <input type="submit" value="Submit" />
         </form>
     </body>
