@@ -15,7 +15,7 @@ app.use(express.json());
 
 /* --------------------------------- Routes --------------------------------- */
 
-app.get('/', (req, res) => {
+app.get(['/', '/downloading'], (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'main.html'));
 });
 

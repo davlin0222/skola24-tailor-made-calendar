@@ -28,11 +28,11 @@ Information paragraph
         Schedule ID information
         Person ID 
             Swedish social security number (YYMMDD-XXXX)
-            Class ID
-            Classroom ID
-            Teacher ID
-            Group ID
-            Lesson ID
+        Class ID
+        Classroom ID
+        Teacher ID
+        Group ID
+        Lesson ID
 
 Number input
     Label: Week number
@@ -120,6 +120,8 @@ Text input Functionality
         3 or more letters (everything is at least, except week number)
         If Schedule ID first 5 chars are numbers check if valid Person ID
     Apply case
+
+Cannot submit the button twice, show when that users turn
 
 
 ## Progress
