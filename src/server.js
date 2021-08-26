@@ -15,22 +15,22 @@ app.use(express.json());
 
 /* --------------------------------- Routes --------------------------------- */
 
-app.get('/', (req, res) => {
+app.get(['/', '/downloading'], (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'main.html'));
 });
 
 app.post('/create-calendar', async (req, res) => {
-    // const calendar__raw_data = await require('./services/webscrape')({
-    //     ...req.body,
-    // });
+    const calendar__raw_data = await require('./services/webscrape')({
+        ...req.body,
+    });
 
-    // const calendar__formatted_data = require('./services/extract_calendar_data')(
-    //     calendar__raw_data
-    // );
+    const calendar__formatted_data = require('./services/extract_calendar_data')(
+        calendar__raw_data
+    );
 
-    // const calendar_string__constructed = require('./services/calendar_formatted_string')(
-    //     calendar__formatted_data
-    // );
+    const calendar_string__constructed = require('./services/calendar_formatted_string')(
+        calendar__formatted_data
+    );
 
     const file_path = path.join(
         __dirname,
@@ -40,7 +40,7 @@ app.post('/create-calendar', async (req, res) => {
         'school.ics'
     );
 
-    // fs.writeFileSync(file_path, calendar_string__constructed);
+    fs.writeFileSync(file_path, calendar_string__constructed);
 
     return res.download(file_path);
 });

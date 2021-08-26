@@ -6,42 +6,128 @@
   box-sizing: border-box;
 }
 
-body {
-  background: #121212;
-  color: #eee;
+* + * {
+  margin-top: 1rem;
 }
 
-.custom_calendar__form {
-  margin: 0 2rem;
+html,
+body {
+  background: #171717;
+  color: #ddd;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  max-width: 380px;
+  margin: calc(10vw - 0.1 * 380px) auto;
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+.text_button {
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.questionair {
+  padding: 0.9rem 1.2rem;
+  background: #232323;
+  border: 3px solid #202020;
+  border-radius: 8px;
+}
+
+.questionair--title {
+  font-size: 1.5rem;
+}
+@media (max-width: 319px) {
+  .questionair--title {
+    font-size: 1.3rem;
+  }
+}
+
+.calendar_form--option {
   display: flex;
   flex-direction: column;
 }
-.custom_calendar__form > * + * {
-  margin: 1em 0 0;
-}
-.custom_calendar__form input[type=text],
-.custom_calendar__form input[type=number] {
-  margin-top: 0;
-}
-.custom_calendar__form input[type=submit] {
-  margin-top: 1rem;
-}
-.custom_calendar__form ul {
-  margin-top: 0;
-  margin-left: 1rem;
-}
-.custom_calendar__form p {
-  margin-left: 1rem;
-  font-style: italic;
+
+.calendar_form--label {
+  position: relative;
 }
 
-.schedule_id__reveal {
-  width: 0.9rem;
-  height: 0.9rem;
-  font-size: 0.7rem;
+.calendar_form--input {
+  margin-top: 0.2rem;
+  padding: 0.7rem 0.5rem;
+  background: #1d1d1d;
+  color: #eee;
+  border: 2px solid #1b1b1b;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+}
+.calendar_form--input:disabled {
+  background: #1f1f1f;
+  color: #ccc;
+  border: none;
 }
 
-.hidden {
+.calendar_form--list {
+  margin: 0.4rem 1.1rem;
+}
+.calendar_form--list li {
+  margin-top: 0.4rem;
+}
+
+.calendar_form--item_description {
+  margin-top: 0;
+}
+
+.questionmark {
+  position: absolute;
+  padding: 0.5rem 0.5rem;
+  transform: translate(-0.2rem, -0.2rem);
+}
+
+.questionmark--img {
+  width: 0.8rem;
+  height: 0.8rem;
+  filter: invert(100);
+}
+
+.calendar_form--submit {
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 1.2rem;
+  background: #181818;
+  color: #eee;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+}
+.calendar_form--submit:hover {
+  background: #191919;
+}
+.calendar_form--submit:focus {
+  background: #161616;
+}
+.calendar_form--submit:active {
+  background: #090909;
+}
+.calendar_form--submit:disabled {
+  display: none;
+}
+
+.-low_opacity {
+  opacity: 30%;
+}
+
+.-hidden {
+  visibility: hidden;
+}
+
+.-display_none {
   display: none;
 }
 
