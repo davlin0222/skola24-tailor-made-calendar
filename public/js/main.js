@@ -1,9 +1,15 @@
 import { DateTime } from '../vendors/luxon.js';
 import download_blob_as_file from './download_blob_as_file.js';
 
+const calendar_form = document.querySelector('.calendar_form');
+
 refresh();
 
 function refresh() {
+    if (calendar_form.schedule_id.value.length == 0) {
+        document.getElementById('week_number').value = DateTime.now().weekNumber;
+    }
+
     if (window.location.href.includes('/downloading')) {
         set_currently_downloading(true);
         return;
@@ -49,8 +55,6 @@ function set_currently_downloading(bool) {
     }
     download_info.classList.add('-display_none');
 }
-
-const calendar_form = document.querySelector('.calendar_form');
 
 document.getElementById('schedule_id__reveal').addEventListener('click', (e) => {
     document.getElementById('schedule_id_info').classList.toggle('-display_none');
