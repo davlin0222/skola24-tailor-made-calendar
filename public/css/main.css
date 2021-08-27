@@ -19,7 +19,7 @@ body {
 
 body {
   max-width: 380px;
-  margin: calc(10vw - 0.1 * 380px) auto;
+  margin: calc(6vw - 0.06 * 380px) auto;
 }
 
 button {
@@ -55,10 +55,6 @@ button {
   flex-direction: column;
 }
 
-.calendar_form--label {
-  position: relative;
-}
-
 .calendar_form--input {
   margin-top: 0.2rem;
   padding: 0.7rem 0.5rem;
@@ -70,7 +66,7 @@ button {
 }
 .calendar_form--input:disabled {
   background: #1f1f1f;
-  color: #ccc;
+  color: #d0c3d0;
   border: none;
 }
 
@@ -85,12 +81,6 @@ button {
   margin-top: 0;
 }
 
-.questionmark {
-  position: absolute;
-  padding: 0.5rem 0.5rem;
-  transform: translate(-0.2rem, -0.2rem);
-}
-
 .questionmark--img {
   width: 0.8rem;
   height: 0.8rem;
@@ -101,22 +91,26 @@ button {
   width: 100%;
   margin-top: 0.6rem;
   padding: 1.2rem;
-  background: #181818;
+  background: #1b1b1b;
   color: #eee;
   border-radius: 0.3rem;
   font-size: 1rem;
 }
 .calendar_form--submit:hover {
-  background: #191919;
+  background: #1a1a1a;
 }
 .calendar_form--submit:focus {
-  background: #161616;
+  background: #171717;
 }
 .calendar_form--submit:active {
-  background: #090909;
+  background: #131313;
 }
 .calendar_form--submit:disabled {
   display: none;
+}
+
+.calendar_form--reset {
+  color: #737373;
 }
 
 .-low_opacity {

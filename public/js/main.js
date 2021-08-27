@@ -48,9 +48,7 @@ function set_currently_downloading(bool) {
 
     if (bool) {
         download_info.classList.remove('-display_none');
-        setTimeout(() => {
-            next_download.classList.remove('-display_none');
-        }, 9000);
+        next_download.classList.remove('-display_none');
         return;
     }
     download_info.classList.add('-display_none');
@@ -84,6 +82,9 @@ calendar_form.addEventListener('submit', function (e) {
         .then(async (blob) => {
             const data_string = await blob.text();
             download_blob_as_file(data_string, 'school.ics');
+
+            set_currently_downloading(false);
+            refresh();
         });
 });
 
