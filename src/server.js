@@ -15,14 +15,12 @@ app.use(express.json());
 
 /* --------------------------------- Routes --------------------------------- */
 
-app.get('/', (req, res) => {
+app.get(['/', '/downloading'], (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'main.html'));
 });
 
 app.post('/create-calendar', async (req, res) => {
-    const calendar__raw_data = await require('./services/webscrape')({
-        ...req.body,
-    });
+    const calendar__raw_data = await require('./services/webscrape')(req.body);
 
     const calendar__formatted_data = require('./services/extract_calendar_data')(
         calendar__raw_data

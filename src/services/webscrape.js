@@ -10,6 +10,7 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
 module.exports = async function (options) {
+    console.log('options', options);
     const config = {
         schedule_id__value: options.schedule_id,
         week_number__value: options.week_number,
@@ -147,23 +148,16 @@ async function webscrape(page, config) {
         await page.waitForXPath(header__elem__XPath);
 
         const [header__elem] = await page.$x(header__elem__XPath);
-        const header__elem__json = await header__elem.getProperty(
-            'textContent'
-        );
+        const header__elem__json = await header__elem.getProperty('textContent');
         const header__elem__text = await header__elem__json.jsonValue();
-        let calendar_block__data = [
-            config.week_number__value,
-            header__elem__text,
-        ];
+        let calendar_block__data = [config.week_number__value, header__elem__text];
 
         const detail__elems = await page.$x(
             '/html/body/div[3]/div[2]/div/div[4]/div/div/div[1]/div/div/div[2]/ul/li/div/div'
         );
 
         for (const detail__elem of detail__elems) {
-            const detail__elem__json = await detail__elem.getProperty(
-                'textContent'
-            );
+            const detail__elem__json = await detail__elem.getProperty('textContent');
             const detail__elem__text = await detail__elem__json.jsonValue();
             calendar_block__data.push(detail__elem__text.trim());
         }
