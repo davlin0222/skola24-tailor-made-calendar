@@ -1,7 +1,6 @@
 {
     "name": "skola24-tailor-made-calendar",
-    "version": "1.0.0",
-    "description": "Webscraper for skola24 schemavisare to export ics files, with your custom-made structure",
+    "description": "Webscrape any schedule from skola24 schemavisare and export it to an iCal file (.ics)",
     "keywords": [
         "webscraper",
         "schedule",
@@ -9,29 +8,41 @@
         "ics",
         "skola24"
     ],
-    "main": "src/server.js",
+    "license": "MIT",
+    "author": "DavLin",
+    "homepage": "https://github.com/viunea/skola24-tailor-made-calendar#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/viunea/skola24-tailor-made-calendar.git"
+    },
+    "bugs": {
+        "url": "https://github.com/viunea/skola24-tailor-made-calendar/issues"
+    },
+    "version": "3.0.0",
+    "private": true,
+    "files": [],
+    "main": "index.js",
     "scripts": {
-        "start": "npx concurrently -n browser,scss,node npm:start-browser npm:watch-scss npm:watch-node",
-        "start-browser": "bash ./start-browser.sh",
+        "start": "node .",
+        "dev": "npx concurrently -n browser,scss,node npm:open-browser npm:watch-scss npm:watch-node",
+        "open-browser": "bash ./open-browser.sh",
         "watch-scss": "npx sass --watch public/scss:public/css",
         "watch-node": "npx nodemon . | npx pino-pretty"
     },
-    "author": "viunea",
-    "license": "MIT License",
+    "devDependencies": {
+        "concurrently": "^6.2.1",
+        "nodemon": "^2.0.7",
+        "sass": "^1.38.0"
+    },
     "dependencies": {
+        "ics": "^2.31.0",
         "date-fns": "^2.21.3",
         "express": "^4.17.1",
-        "ics": "^2.31.0",
         "morgan": "^1.10.0",
         "pino-http": "^5.5.0",
         "pino-pretty": "^4.8.0",
         "puppeteer": "^9.1.1",
         "puppeteer-extra": "^3.1.18",
-        "puppeteer-extra-plugin-stealth": "^2.7.8",
-        "sass": "^1.38.0"
-    },
-    "devDependencies": {
-        "concurrently": "^6.2.1",
-        "nodemon": "^2.0.7"
+        "puppeteer-extra-plugin-stealth": "^2.7.8"
     }
 }

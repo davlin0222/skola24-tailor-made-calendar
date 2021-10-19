@@ -43,7 +43,4 @@ app.post('/create-calendar', async (req, res) => {
     return res.download(file_path);
 });
 
-const PORT = 3000;
-app.listen(PORT, function () {
-    console.log(`Server up and running on port ${PORT}`);
-});
+module.exports = app;

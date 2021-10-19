@@ -145,6 +145,3 @@ Set found reoccuring events to repeat and remove events not found one week i.e a
 # Known issues
 
 When calender imported to google calendar and opening to edit event, then the time is two hours ahead of actual placement on the calendar. This probably is because of no timezone set by _calendar_formatted_string.js_
-
-
-
