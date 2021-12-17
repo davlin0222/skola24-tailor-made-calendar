@@ -1,12 +1,5 @@
-const path = require('path');
-
-// puppeteer-extra is a wrapper around puppeteer,
-// it augments the installed puppeteer with plugin functionality
 const puppeteer = require('puppeteer-extra');
-
-// add stealth plugin and use defaults (all evasion techniques)
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-
 puppeteer.use(StealthPlugin());
 
 module.exports = async function (options) {
@@ -14,7 +7,10 @@ module.exports = async function (options) {
     const config = {
         schedule_id__value: options.schedule_id,
         week_number__value: options.week_number,
+        school_name__value: options.school_name,
+        city_name__value: options.city_name,
     };
+    console.log(`config`, config);
 
     if (
         typeof config.schedule_id__value == 'undefined' ||
@@ -45,8 +41,12 @@ async function webscrape(page, config) {
     //     path.join(__dirname, '..', '..', 'data', 'puppeteer_captures')
     // );
 
+    const school_name__value_capitalcase = config.school_name__value
+        .toLowerCase()
+        .replace(/^\w/, c => c.toUpperCase());
+    const city_name__value_lowercase = config.city_name__value.toLowerCase();
     await page.goto(
-        'https://web.skola24.se/timetable/timetable-viewer/halmstad.skola24.se/Kattegattgymnasiet/'
+        `https://web.skola24.se/timetable/timetable-viewer/${city_name__value_lowercase}.skola24.se/${school_name__value_capitalcase}/`
     );
 
     // Turn off css animations
@@ -129,7 +129,7 @@ async function webscrape(page, config) {
 
     for (const calendar_block__elem of calendar_block__elems) {
         if (
-            (await calendar_block__elem.evaluate((elem) =>
+            (await calendar_block__elem.evaluate(elem =>
                 elem.getAttribute('box-type')
             )) != 'Lesson'
         ) {

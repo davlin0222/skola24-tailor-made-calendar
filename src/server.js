@@ -22,6 +22,8 @@ app.get(['/', '/downloading'], (req, res) => {
 app.post('/create-calendar', async (req, res) => {
     const calendar__raw_data = await require('./services/webscrape')(req.body);
 
+    if (!Array.isArray(calendar__raw_data) || calendar__raw_data.length === 0) return;
+
     const calendar__formatted_data = require('./services/extract_calendar_data')(
         calendar__raw_data
     );

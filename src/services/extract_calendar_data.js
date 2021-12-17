@@ -11,7 +11,7 @@ const date_fns = require('date-fns');
 // ];
 
 module.exports = function extract_calendar_data(calendar__raw_data) {
-    return calendar__raw_data.map((calendar_block__raw_data) => {
+    return calendar__raw_data.map(calendar_block__raw_data => {
         const week_number = calendar_block__raw_data[0];
         const week_day_and_time__obscure_string = calendar_block__raw_data[1];
 
@@ -41,9 +41,7 @@ function extract_date_time(week_number, week_day_and_time__obscure_string) {
         'söndag',
     ];
 
-    const week_day_and_time__obscure_array = week_day_and_time__obscure_string.split(
-        ' '
-    );
+    const week_day_and_time__obscure_array = week_day_and_time__obscure_string.split(' ');
 
     const week_day = week_day_and_time__obscure_array[0].toLowerCase();
     const start__time_string = week_day_and_time__obscure_array[1];
@@ -73,9 +71,7 @@ function first_date_of_iso_week(week, year) {
             date_of_week.getDate() - date_of_week.getDay() + 1
         );
     }
-    return date_of_iso_week.setDate(
-        date_of_week.getDate() + 8 - date_of_week.getDay()
-    );
+    return date_of_iso_week.setDate(date_of_week.getDate() + 8 - date_of_week.getDay());
 }
 
 function first_date_of_week(week, year) {

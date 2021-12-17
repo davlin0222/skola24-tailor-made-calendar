@@ -54,7 +54,7 @@ function set_currently_downloading(bool) {
     download_info.classList.add('-display_none');
 }
 
-document.getElementById('schedule_id__reveal').addEventListener('click', (e) => {
+document.getElementById('schedule_id__reveal').addEventListener('click', e => {
     document.getElementById('schedule_id_info').classList.toggle('-display_none');
 });
 
@@ -68,6 +68,8 @@ calendar_form.addEventListener('submit', function (e) {
     const data = {
         schedule_id: e.target.schedule_id.value,
         week_number: e.target.week_number.value,
+        school_name: e.target.school_name.value,
+        city_name: e.target.city_name.value,
     };
     console.log('data', data);
 
@@ -78,8 +80,8 @@ calendar_form.addEventListener('submit', function (e) {
             'Content-Type': 'application/json',
         },
     })
-        .then((res) => res.blob())
-        .then(async (blob) => {
+        .then(res => res.blob())
+        .then(async blob => {
             const data_string = await blob.text();
             download_blob_as_file(data_string, 'school.ics');
 
@@ -88,7 +90,7 @@ calendar_form.addEventListener('submit', function (e) {
         });
 });
 
-document.getElementById('next_calendar').addEventListener('click', (e) => {
+document.getElementById('next_calendar').addEventListener('click', e => {
     set_currently_downloading(false);
     reset_calendar_form();
 });
